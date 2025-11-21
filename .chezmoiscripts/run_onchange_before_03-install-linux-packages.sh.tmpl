@@ -1,0 +1,12 @@
+{{- if eq .chezmoi.os "linux" }}
+#!/bin/bash
+set -e
+
+# APT 업데이트
+sudo apt update
+
+# APT 패키지 설치
+{{- range .packages.linux.apt }}
+sudo apt install -y {{ . }}
+{{- end }}
+{{- end }}

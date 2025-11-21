@@ -1,0 +1,42 @@
+{
+  "packages": {
+    "darwin": {
+      "brews": [
+        "chezmoi",
+        "eza",
+        "fzf",
+        "git",
+        "htop",
+        "lazygit",
+        "llvm",
+        "mycli",
+        "neofetch",
+        "neovim",
+        "ollama",
+        "openjdk",
+        "php",
+        "pipx",
+        "python-tk@3.13",
+        "python@3.11",
+        "python@3.13",
+        "telnet",
+        "tree",
+        "wget",
+        "yq"
+      ],
+      "casks": [
+        "google-chrome",
+        "mitmproxy",
+        "openinterminal",
+        "postman"
+      ]
+    },
+    "linux": {
+      "apt": [
+        "neovim",
+        "tmux",
+        "build-essential"
+      ]
+    }
+  }
+}
