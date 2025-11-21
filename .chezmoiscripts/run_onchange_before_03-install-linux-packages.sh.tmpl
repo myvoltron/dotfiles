@@ -1,4 +1,4 @@
-{{- if eq .chezmoi.os "linux" }}
+{{ if eq .chezmoi.os "linux" }}
 #!/bin/bash
 set -e
 
@@ -6,7 +6,7 @@ set -e
 sudo apt update
 
 # APT 패키지 설치
-{{- range .packages.linux.apt }}
+{{ range .packages.linux.apt }}
 sudo apt install -y {{ . }}
-{{- end }}
-{{- end }}
+{{ end }}
+{{ end }}
