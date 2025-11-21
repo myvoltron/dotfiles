@@ -1,0 +1,36 @@
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+export ZSH="$HOME/.oh-my-zsh"
+
+ZSH_THEME="powerlevel10k/powerlevel10k"
+
+plugins=(
+  git
+  zsh-syntax-highlighting
+  you-should-use
+)
+
+source $ZSH/oh-my-zsh.sh
+
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# ll - 디렉토리가 있는 모든 것을 먼저 나열합니다
+alias ll='eza -al --group-directories-first'
+# ls - 크기별로 정렬된 파일만 나열합니다
+alias ls='eza -alF --color=always --sort=size | grep -v /'
+alias ic="cd ~/iCloud/com~apple~CloudDocs/"
+
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
+neofetch
+
+JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk-24.jdk/Contents/Home/bin"
+export PATH="$JAVA_HOME:$PATH"
+
+# Added by Antigravity
+export PATH="/Users/jiseop/.antigravity/antigravity/bin:$PATH"
