@@ -31,9 +31,9 @@ sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
 SHELL_NAME=$(basename "$SHELL")
 RC_FILE=""
 
-if [ "$SHELL_NAME" = "zsh" ]; then
+if [ "$SHELL" = "/bin/zsh" ]; then
   RC_FILE="$HOME/.zshrc"
-elif [ "$SHELL_NAME" = "bash" ]; then
+elif [ "$SHELL" = "/bin/bash" ]; then
   RC_FILE="$HOME/.bashrc"
 fi
 

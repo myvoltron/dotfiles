@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# NVM 설치
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+
+# 쉘 설정 반영
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+
+# .nvmrc가 있으면 해당 버전 설치 및 사용
+if [ -f "$HOME/.nvmrc" ]; then
+  nvm install
+  nvm use
+fi
