@@ -35,8 +35,7 @@
       "apt": [
         "tmux",
         "build-essential",
-        "fzf",
-        "lazygit"
+        "fzf"
       ]
     }
   }
