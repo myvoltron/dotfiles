@@ -10,6 +10,16 @@ sudo apt update
 sudo apt install -y {{ . }}
 {{ end }}
 
+# LazyGit 설치
+LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*')
+curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+tar xf lazygit.tar.gz lazygit
+sudo install lazygit -D -t /usr/local/bin/
+
+# FZF 설치
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+
 # 최신 Neovim 다운로드 및 설치
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
 sudo rm -rf /opt/nvim-linux-x86_64
@@ -25,15 +35,12 @@ elif [ "$SHELL_NAME" = "bash" ]; then
   RC_FILE="$HOME/.bashrc"
 fi
 
-LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*')
-curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
-tar xf lazygit.tar.gz lazygit
-sudo install lazygit -D -t /usr/local/bin/
-
-if [ -n "$RC_FILE" ] && ! grep -q "/opt/nvim-linux-x86_64/bin/nvim" "$RC_FILE"; then
-  echo 'export PATH="$PATH:/opt/nvim-linux-x86_64/bin/nvim"' >> "$RC_FILE"
+if [ -n "$RC_FILE" ] && ! grep -q "/opt/nvim-linux-x86_64/bin/" "$RC_FILE"; then
+  echo 'export PATH="$PATH:/opt/nvim-linux-x86_64/bin/"' >> "$RC_FILE"
   echo "Updated $RC_FILE with Neovim path."
 else
   echo "Neovim path already present or unknown shell: $SHELL"
 fi
+
+source ~/.bashrc
 {{ end }}

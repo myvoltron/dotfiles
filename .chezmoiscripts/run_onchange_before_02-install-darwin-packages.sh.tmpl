@@ -1,5 +1,6 @@
 #!/bin/bash
 {{ if eq .chezmoi.os "darwin" }}
+# Homebrew packages 설치
 brew bundle --file=/dev/stdin <<EOF
 {{ range .packages.darwin.brews }}
 brew {{ . | quote }}

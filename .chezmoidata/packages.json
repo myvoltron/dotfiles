@@ -34,8 +34,7 @@
     "linux": {
       "apt": [
         "tmux",
-        "build-essential",
-        "fzf"
+        "build-essential"
       ]
     }
   }
