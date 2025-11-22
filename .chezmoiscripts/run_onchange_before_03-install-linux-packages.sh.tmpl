@@ -17,7 +17,9 @@ tar xf lazygit.tar.gz lazygit
 sudo install lazygit -D -t /usr/local/bin/
 
 # FZF 설치
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+if [ ! -d "$HOME/.fzf" ]; then
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+fi
 ~/.fzf/install
 
 # 최신 Neovim 다운로드 및 설치
