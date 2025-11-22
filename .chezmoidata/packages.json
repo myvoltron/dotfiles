@@ -33,9 +33,9 @@
     },
     "linux": {
       "apt": [
-        "neovim",
         "tmux",
-        "build-essential"
+        "build-essential",
+        "fzf"
       ]
     }
   }

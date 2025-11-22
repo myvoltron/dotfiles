@@ -1,0 +1,34 @@
+#!/bin/bash
+{{ if eq .chezmoi.os "linux" }}
+set -e
+
+# APT 업데이트
+sudo apt update
+
+# APT 패키지 설치
+{{ range .packages.linux.apt }}
+sudo apt install -y {{ . }}
+{{ end }}
+
+# 최신 Neovim 다운로드 및 설치
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
+sudo rm -rf /opt/nvim-linux-x86_64
+sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
+
+# PATH 추가 (.bashrc 또는 .zshrc)
+SHELL_NAME=$(basename "$SHELL")
+RC_FILE=""
+
+if [ "$SHELL_NAME" = "zsh" ]; then
+  RC_FILE="$HOME/.zshrc"
+elif [ "$SHELL_NAME" = "bash" ]; then
+  RC_FILE="$HOME/.bashrc"
+fi
+
+if [ -n "$RC_FILE" ] && ! grep -q "/opt/nvim-linux-x86_64/bin/nvim" "$RC_FILE"; then
+  echo 'export PATH="$PATH:/opt/nvim-linux-x86_64/bin/nvim"' >> "$RC_FILE"
+  echo "Updated $RC_FILE with Neovim path."
+else
+  echo "Neovim path already present or unknown shell: $SHELL"
+fi
+{{ end }}
