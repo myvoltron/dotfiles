@@ -1,7 +1,6 @@
-{{ if eq .chezmoi.os "linux" }}
 #!/bin/bash
+{{ if eq .chezmoi.os "linux" }}
 set -e
-
 # APT 업데이트
 sudo apt update
 

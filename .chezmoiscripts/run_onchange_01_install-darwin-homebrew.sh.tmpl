@@ -2,7 +2,6 @@
 
 # If Homebrew is not installed on the system, it will be installed here
 {{ if eq .chezmoi.os "darwin" }}
-printf "{{ .chezmoi.os }}"
 if test ! $(which brew); then
    printf '\n\n\e[33mHomebrew not found. \e[0mInstalling Homebrew...'
    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
