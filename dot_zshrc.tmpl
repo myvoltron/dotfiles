@@ -27,10 +27,16 @@ alias ls='eza -alF --color=always --sort=size | grep -v /'
 alias ic="cd ~/iCloud/com~apple~CloudDocs/"
 
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
-neofetch
 
-JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk-24.jdk/Contents/Home/bin"
-export PATH="$JAVA_HOME:$PATH"
+{{ if eq .chezmoi.os "darwin" }}
+     neofetch
 
-# Added by Antigravity
-export PATH="/Users/jiseop/.antigravity/antigravity/bin:$PATH"
+    # macOS PATH 설정
+    export PATH="/Users/jiseop/.antigravity/antigravity/bin:$PATH"
+    export PATH="/Library/Java/JavaVirtualMachines/jdk-24.jdk/Contents/Home/bin:$PATH"
+    export PATH="$JAVA_HOME:$PATH"
+{{ else if eq .chezmoi.os "linux" }}
+    # Linux PATH 설정
+    export PATH="$HOME/.local/bin:$PATH"
+    export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:$PATH"
+{{ end }}
