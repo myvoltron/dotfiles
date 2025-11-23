@@ -24,11 +24,12 @@ export NVM_DIR="$HOME/.nvm"
 alias ll='eza -al --group-directories-first'
 # ls - 크기별로 정렬된 파일만 나열합니다
 alias ls='eza -alF --color=always --sort=size | grep -v /'
-alias ic="cd ~/iCloud/com~apple~CloudDocs/"
 
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 
 {{ if eq .chezmoi.os "darwin" }}
+alias ic="cd ~/iCloud/com~apple~CloudDocs/"
+
 neofetch
 
 # macOS PATH 설정
@@ -42,5 +43,5 @@ export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:$PATH"
 
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin/"
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+source <(fzf --zsh)
 {{ end }}
