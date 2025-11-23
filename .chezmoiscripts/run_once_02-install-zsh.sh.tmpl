@@ -1,0 +1,46 @@
+#!/bin/sh
+
+# Installing zsh
+if ! command -v zsh >/dev/null 2>&1; then
+    echo "Installing zsh..."
+    {{ if eq .chezmoi.os "darwin" }}
+        brew install zsh
+    {{ else if eq .chezmoi.os "linux" }}
+        if [ -n $(command -v "apt") ]; then
+          sudo apt update -y
+          sudo apt install -y zsh
+        else
+          echo "Unsupported Linux distribution"
+          exit 1
+        fi
+    {{ end }}
+    echo "zsh installation complete."
+else
+    echo "zsh already installed. skipping installation."
+fi
+
+# If Oh-my-zsh is not installed on the system, it will be installed here
+if [ ! -d $HOME/.oh-my-zsh ]; then
+  printf '\n\n\e[33mOh-my-zsh not found. \e[0mInstalling Oh-my-zsh...'
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+else
+  printf '\n\n\e[0mOh-my-zsh found. Continuing...\n'
+fi
+
+# Switch default shell
+echo "Changing default shell to: $ZSH_PATH"
+ZSH_PATH="$(command -v zsh)"
+
+if [ -z "$ZSH_PATH" ]; then
+    echo "ERROR: zsh installed but executable not found."
+    exit 1
+fi
+
+if [ "$SHELL" != "$ZSH_PATH" ]; then
+    # chsh는 패스워드 필요할 수 있음 (docker 환경에서는 필요 없음)
+    sudo chsh -s "$ZSH_PATH" "$USER"
+    echo "default shell switched to zsh for user: $USER"
+else
+    echo "already switched to zsh for user: $USER"
+fi
+

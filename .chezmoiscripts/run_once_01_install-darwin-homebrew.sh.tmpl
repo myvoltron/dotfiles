@@ -8,12 +8,4 @@ if test ! $(which brew); then
 else
   printf '\n\n\e[0mHomebrew found. Continuing...'
 fi
-
-# If Oh-my-zsh is not installed on the system, it will be installed here
-if [ ! -d $HOME/.oh-my-zsh ]; then
-  printf '\n\n\e[33mOh-my-zsh not found. \e[0mInstalling Oh-my-zsh...'
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-else
-  printf '\n\n\e[0mOh-my-zsh found. Continuing...'
-fi
 {{ end }}
