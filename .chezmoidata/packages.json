@@ -34,7 +34,8 @@
     "linux": {
       "apt": [
         "tmux",
-        "build-essential"
+        "build-essential",
+        "eza"
       ]
     }
   }
