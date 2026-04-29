@@ -23,6 +23,7 @@ fi
 ~/.fzf/install
 
 # 최신 Neovim 다운로드 및 설치
+# arm64 처리 필요
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
 sudo rm -rf /opt/nvim-linux-x86_64
 sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
@@ -44,5 +45,5 @@ else
   echo "Neovim path already present or unknown shell: $SHELL"
 fi
 
-source ~/.bashrc
+source ~/.zshrc
 {{ end }}

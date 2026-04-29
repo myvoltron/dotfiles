@@ -1,0 +1,11 @@
+theme = "Catppuccin Mocha"
+
+cursor-style = block
+cursor-style-blink = true
+
+custom-shader = cursor-shaders/cursor_warp.glsl
+
+font-family = "IoskeleyMonoNL Nerd Font"
+font-family = "Noto Sans KR"
+
+link-url = true
