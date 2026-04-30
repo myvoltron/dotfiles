@@ -2,10 +2,13 @@
   "packages": {
     "darwin": {
       "brews": [
+        "anomalyco/tap/opencode",
         "chezmoi",
         "eza",
+        "fastfetch",
         "fzf",
         "git",
+        "git-delta",
         "htop",
         "lazygit",
         "llvm",
@@ -16,15 +19,22 @@
         "openjdk",
         "php",
         "pipx",
+        "powershell",
+        "pyenv",
         "python-tk@3.13",
         "python@3.11",
         "python@3.13",
+        "qemu",
+        "rust",
+        "starship",
         "telnet",
         "tree",
         "wget",
-        "yq"
+        "yq",
+        "zimfw"
       ],
       "casks": [
+        "codex",
         "google-chrome",
         "mitmproxy",
         "openinterminal",
