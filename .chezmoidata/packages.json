@@ -2,7 +2,6 @@
   "packages": {
     "darwin": {
       "brews": [
-        "anomalyco/tap/opencode",
         "chezmoi",
         "eza",
         "fastfetch",
@@ -12,8 +11,6 @@
         "htop",
         "lazygit",
         "llvm",
-        "mycli",
-        "neofetch",
         "neovim",
         "ollama",
         "openjdk",
@@ -21,9 +18,9 @@
         "pipx",
         "powershell",
         "pyenv",
+        "python@3.13",
         "python-tk@3.13",
         "python@3.11",
-        "python@3.13",
         "qemu",
         "rust",
         "starship",
@@ -31,7 +28,8 @@
         "tree",
         "wget",
         "yq",
-        "zimfw"
+        "zimfw",
+        "anomalyco/tap/opencode"
       ],
       "casks": [
         "codex",
