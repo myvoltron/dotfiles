@@ -20,7 +20,7 @@ return {
               end
 
               -- 2. 표준 node_modules 환경 체크 (npm, pnpm, yarn classic)
-              if vim.uv.fs_stat(root_dir .. "/.yarn/sdks") then
+              if vim.uv.fs_stat(root_dir .. "/node_modules/typescript/lib") then
                 return "node_modules/typescript/lib"
               end
 
