@@ -2,17 +2,20 @@
   "packages": {
     "darwin": {
       "brews": [
+        "bat",
         "chezmoi",
         "eza",
         "fastfetch",
         "fzf",
         "git",
         "git-delta",
+        "glow",
         "htop",
         "lazygit",
         "llvm",
         "neovim",
         "ollama",
+        "opencode",
         "openjdk",
         "php",
         "pipx",
@@ -28,8 +31,7 @@
         "tree",
         "wget",
         "yq",
-        "zimfw",
-        "anomalyco/tap/opencode"
+        "zimfw"
       ],
       "casks": [
         "codex",
