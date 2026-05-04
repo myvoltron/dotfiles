@@ -20,4 +20,4 @@ else
 fi
 
 # exec: replace current process with chezmoi init
-exec "$chezmoi" init --apply "https://github.com:myvoltron/dotfiles.git"
+exec "$chezmoi" init --apply "https://github.com/myvoltron/dotfiles.git"
