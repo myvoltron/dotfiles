@@ -14,7 +14,6 @@ eval "$(starship init zsh)"
 alias ll='eza -al --group-directories-first'
 # ls - 크기별로 정렬된 파일만 나열합니다
 alias ls='eza -alF --color=always --sort=size | grep -v /'
-alias ic="cd ~/iCloud/com~apple~CloudDocs/"
 alias python=python3
 alias lg="lazygit"
 alias oc="opencode"
@@ -27,11 +26,19 @@ alias cat="bat"
 # macOS PATH 설정
 typeset -U path PATH
 path=(
-  /Users/jiseop/.antigravity/antigravity/bin
-  /Library/Java/JavaVirtualMachines/jdk-24.jdk/Contents/Home/bin
   $HOME/.local/bin
   $path
 )
+
+{{ if eq .chezmoi.os "darwin" }}
+path=(
+  /Users/jiseop/.antigravity/antigravity/bin
+  /Library/Java/JavaVirtualMachines/jdk-24.jdk/Contents/Home/bin
+  $path
+)
+
+alias ic="cd ~/iCloud/com~apple~CloudDocs/"
+{{ end }}
 
 opencode() {
   if [[ -n "$CMUX_WORKSPACE_ID" ]]; then

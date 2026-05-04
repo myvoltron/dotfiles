@@ -22,28 +22,13 @@ if [ ! -d "$HOME/.fzf" ]; then
 fi
 ~/.fzf/install
 
+
+# uv 설치
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
 # 최신 Neovim 다운로드 및 설치
-# arm64 처리 필요
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
 sudo rm -rf /opt/nvim-linux-x86_64
 sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
-
-# PATH 추가 (.bashrc 또는 .zshrc)
-SHELL_NAME=$(basename "$SHELL")
-RC_FILE=""
-
-if [ "$SHELL" = "/bin/zsh" ]; then
-  RC_FILE="$HOME/.zshrc"
-elif [ "$SHELL" = "/bin/bash" ]; then
-  RC_FILE="$HOME/.bashrc"
-fi
-
-if [ -n "$RC_FILE" ] && ! grep -q "/opt/nvim-linux-x86_64/bin/" "$RC_FILE"; then
-  echo 'export PATH="$PATH:/opt/nvim-linux-x86_64/bin/"' >> "$RC_FILE"
-  echo "Updated $RC_FILE with Neovim path."
-else
-  echo "Neovim path already present or unknown shell: $SHELL"
-fi
-
-source ~/.zshrc
+export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 {{ end }}

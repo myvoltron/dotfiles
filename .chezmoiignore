@@ -1,0 +1,7 @@
+{{ if ne .chezmoi.os "darwin" }}
+.hammerspoon/**
+{{ end }}
+
+{{ if eq .chezmoi.os "linux" }}
+.config/ghostty/**
+{{ end }}

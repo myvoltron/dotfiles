@@ -43,10 +43,20 @@
     },
     "linux": {
       "apt": [
+        "git",
+        "curl",
+        "wget",
+        "zsh",
         "tmux",
         "build-essential",
+        "unzip",
+        "ripgrep",
+        "fd-find",
+        "bat",
         "eza",
-        "lazygit"
+        "htop",
+        "tree",
+        "yq"
       ]
     }
   }

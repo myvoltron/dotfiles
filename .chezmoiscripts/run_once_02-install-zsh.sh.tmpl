@@ -1,64 +1,26 @@
 #!/bin/sh
+set -e
 
-# Installing zsh
 if ! command -v zsh >/dev/null 2>&1; then
-    echo "Installing zsh..."
-    {{ if eq .chezmoi.os "darwin" }}
-        brew install zsh
-    {{ else if eq .chezmoi.os "linux" }}
-        if [ -n $(command -v "apt") ]; then
-          sudo apt update -y
-          sudo apt install -y zsh
-        else
-          echo "Unsupported Linux distribution"
-          exit 1
-        fi
-    {{ end }}
-    echo "zsh installation complete."
-else
-    echo "zsh already installed. skipping installation."
+  echo "Installing zsh..."
+
+  {{ if eq .chezmoi.os "darwin" }}
+  brew install zsh
+  {{ else if eq .chezmoi.os "linux" }}
+  sudo apt update
+  sudo apt install -y zsh
+  {{ end }}
 fi
 
-# If Oh-my-zsh is not installed on the system, it will be installed here
-if [ ! -d $HOME/.oh-my-zsh ]; then
-  printf '\n\n\e[33mOh-my-zsh not found. \e[0mInstalling Oh-my-zsh...'
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-else
-  printf '\n\n\e[0mOh-my-zsh found. Continuing...\n'
+# Install zimfw if missing
+if [ ! -f "$HOME/.zim/zimfw.zsh" ]; then
+  mkdir -p "$HOME/.zim"
+  curl -fsSL -o "$HOME/.zim/zimfw.zsh" \
+    https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
 fi
 
-# zsh-syntax-highlighting
-if [ ! -d "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting" ]; then
-  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
-    "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
-fi
-
-# you-should-use
-if [ ! -d "$HOME/.oh-my-zsh/custom/plugins/you-should-use" ]; then
-  git clone https://github.com/MichaelAquilina/zsh-you-should-use \
-    "$HOME/.oh-my-zsh/custom/plugins/you-should-use"
-fi
-
-# powerlevel10k theme
-if [ ! -d "$HOME/.oh-my-zsh/custom/themes/powerlevel10k" ]; then
-  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git \
-    "$HOME/.oh-my-zsh/custom/themes/powerlevel10k"
-fi
-
-# Switch default shell
-echo "Changing default shell to: $ZSH_PATH"
 ZSH_PATH="$(command -v zsh)"
 
-if [ -z "$ZSH_PATH" ]; then
-    echo "ERROR: zsh installed but executable not found."
-    exit 1
+if [ -n "$ZSH_PATH" ] && [ "$SHELL" != "$ZSH_PATH" ]; then
+  sudo chsh -s "$ZSH_PATH" "$USER" || true
 fi
-
-if [ "$SHELL" != "$ZSH_PATH" ]; then
-    # chsh는 패스워드 필요할 수 있음 (docker 환경에서는 필요 없음)
-    sudo chsh -s "$ZSH_PATH" "$USER"
-    echo "default shell switched to zsh for user: $USER"
-else
-    echo "already switched to zsh for user: $USER"
-fi
-
