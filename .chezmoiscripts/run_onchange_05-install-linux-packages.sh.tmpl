@@ -33,4 +33,13 @@ sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
 
 # starship 설치
 curl -sS https://starship.rs/install.sh | sh
+
+# fastfetch: Ubuntu 24.04 noble apt repo에는 없을 수 있으므로 GitHub release .deb 사용
+if ! command -v fastfetch >/dev/null 2>&1; then
+  curl -Lo /tmp/fastfetch-linux-amd64.deb \
+    https://github.com/fastfetch-cli/fastfetch/releases/latest/download/fastfetch-linux-amd64.deb
+
+  sudo apt install -y /tmp/fastfetch-linux-amd64.deb
+  rm -f /tmp/fastfetch-linux-amd64.deb
+fi
 {{ end }}
