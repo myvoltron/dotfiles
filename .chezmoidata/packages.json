@@ -56,7 +56,8 @@
         "eza",
         "htop",
         "tree",
-        "yq"
+        "yq",
+        "fastfetch"
       ]
     }
   }

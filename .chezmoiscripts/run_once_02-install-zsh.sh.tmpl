@@ -12,12 +12,11 @@ if ! command -v zsh >/dev/null 2>&1; then
   {{ end }}
 fi
 
-# Install zimfw if missing
-if [ ! -f "$HOME/.zim/zimfw.zsh" ]; then
-  mkdir -p "$HOME/.zim"
-  curl -fsSL -o "$HOME/.zim/zimfw.zsh" \
-    https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
-fi
+{{ if eq .chezmoi.os "darwin" }}
+brew install --formula zimfw
+{{ else if eq .chezmoi.os "linux" }}
+curl -fsSL https://raw.githubusercontent.com/zimfw/install/master/install.zsh | zsh
+{{ end }}
 
 ZSH_PATH="$(command -v zsh)"
 
